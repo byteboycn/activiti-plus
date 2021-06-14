@@ -1,35 +1,32 @@
 package cn.byteboy.activitiplus.business;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
  * @author hongshaochuan
  * @Date 2021/6/11
  */
+@Slf4j
 public class StrategyAssigneeAllocator implements AssigneeAllocator {
 
-    private final ConcurrentHashMap<Integer, Strategy> strategies = new ConcurrentHashMap<>();
+//    private final ConcurrentHashMap<Integer, Strategy> strategies = new ConcurrentHashMap<>();
 
-    private final String ALLOCATOR_NAME = "策略分配";
+    private static final String ALLOCATOR_NAME = "策略分配";
 
+    private final String name;
 
-    @Data
-    public class Strategy {
+    private final Function<String, String> function;
 
-        private final String name;
-
-        private final Integer id;
-
-        public Strategy(String name, Integer id) {
-            this.name = name;
-            this.id = id;
-        }
+    public StrategyAssigneeAllocator(String name, Function<String, String> function) {
+        this.name = name;
+        this.function = function;
     }
-
 
     @Override
     public String getAllocatorName() {
@@ -37,7 +34,12 @@ public class StrategyAssigneeAllocator implements AssigneeAllocator {
     }
 
     @Override
-    public List<String> getSelectList() {
-        return strategies.values().stream().map(Strategy::getName).collect(Collectors.toList());
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public String getValue(String startUserId) {
+        return function.apply(startUserId);
     }
 }

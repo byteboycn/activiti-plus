@@ -2,6 +2,7 @@ package cn.byteboy.activitiplus.business;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -24,5 +25,15 @@ public class DefaultBusinessRegistry implements BusinessRegistry {
     @Override
     public BusinessAdapter getBusinessAdapter(String businessName) {
         return this.map.get(businessName);
+    }
+
+    @Override
+    public BusinessAdapter getBusinessAdapterByProcessDefinition(String key) {
+        for (Map.Entry<String, BusinessAdapter> entry : map.entrySet()) {
+            if (entry.getValue().getProcessDefinition().getId().equals(key)) {
+                return entry.getValue();
+            }
+        }
+        return null;
     }
 }

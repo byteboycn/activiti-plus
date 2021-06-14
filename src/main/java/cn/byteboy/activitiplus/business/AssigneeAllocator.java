@@ -8,7 +8,26 @@ import java.util.List;
  */
 public interface AssigneeAllocator {
 
+    /**
+     * 获取分类名称
+     *
+     * @return
+     */
     String getAllocatorName();
 
-    List<String> getSelectList();
+
+    /**
+     * 获取值名称
+     *
+     * @return
+     */
+    String getName();
+
+    /**
+     * 获取处理人
+     *
+     * @param startUserId 任务启动者
+     * @return
+     */
+    String getValue(String startUserId);
 }

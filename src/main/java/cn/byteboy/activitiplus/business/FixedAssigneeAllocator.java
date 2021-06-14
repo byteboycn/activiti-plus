@@ -5,13 +5,21 @@ import java.util.List;
 
 /**
  * @author hongshaochuan
- * @Date 2021/6/11
+ * @date 2021/6/11
  */
 public class FixedAssigneeAllocator implements AssigneeAllocator {
 
-    private final String ALLOCATOR_NAME = "固定分配";
+    private static final String ALLOCATOR_NAME = "固定分配";
 
-    private final List<String> list = new ArrayList<>();
+    private final String name;
+
+    private final String value;
+
+    public FixedAssigneeAllocator(String name, String value) {
+        this.name = name;
+        this.value = value;
+    }
+
 
     @Override
     public String getAllocatorName() {
@@ -19,7 +27,13 @@ public class FixedAssigneeAllocator implements AssigneeAllocator {
     }
 
     @Override
-    public List<String> getSelectList() {
-        return list;
+    public String getName() {
+        return this.name;
+    }
+
+
+    @Override
+    public String getValue(String startUserId) {
+        return value;
     }
 }

@@ -9,4 +9,6 @@ public interface BusinessRegistry {
     void registerBusiness(BusinessAdapter businessAdapter);
 
     BusinessAdapter getBusinessAdapter(String businessName);
+
+    BusinessAdapter getBusinessAdapterByProcessDefinition(String key);
 }
