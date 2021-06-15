@@ -7,5 +7,5 @@ package cn.byteboy.activitiplus.business;
 public abstract class AbstractBusinessTask {
 
     // TODO 系统相关的字段和业务相关的字段解耦
-    protected String id;
+//    protected String id;
 }

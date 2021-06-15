@@ -1,12 +1,10 @@
 package cn.byteboy.activitiplus.activiti;
 
 import cn.byteboy.activitiplus.aware.RepositoryServiceAware;
-import cn.byteboy.activitiplus.business.GlobalTaskListener;
 import org.activiti.bpmn.converter.BpmnXMLConverter;
 import org.activiti.bpmn.model.*;
 import org.activiti.bpmn.model.Process;
 import org.activiti.engine.RepositoryService;
-import org.springframework.core.io.ClassPathResource;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -31,6 +29,7 @@ public class Deploy implements RepositoryServiceAware {
         this.repositoryService = repositoryService;
     }
 
+    // TODO 如何避免重复部署
     public void deploy(String name, String resourceName, InputStream inputStream) throws XMLStreamException {
 
 
@@ -61,9 +60,8 @@ public class Deploy implements RepositoryServiceAware {
 
         ActivitiListener listener = new ActivitiListener();
         listener.setEvent("all");
-        listener.setImplementation("cn.byteboy.activitiplus.business.GlobalTaskListener");
+        listener.setImplementation("cn.byteboy.activitiplus.listener.GlobalTaskListener");
         listener.setImplementationType("class");
-        listener.setInstance(GlobalTaskListener.INSTANCE);
         return listener;
     }
 }

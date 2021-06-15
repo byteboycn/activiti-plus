@@ -1,5 +1,6 @@
-package cn.byteboy.activitiplus.business;
+package cn.byteboy.activitiplus.business.impl;
 
+import cn.byteboy.activitiplus.business.AssigneeAllocator;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 

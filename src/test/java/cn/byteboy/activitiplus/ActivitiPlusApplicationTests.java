@@ -140,12 +140,12 @@ class ActivitiPlusApplicationTests {
     @Test
     public void test4() {
         List<Task> tasks= taskService.createTaskQuery()
-                .processDefinitionKey("demo") //流程Key
+                .processDefinitionKey("myProcess") //流程Key
                 .list();
         for (Task task : tasks) {
             if (task != null) {
                 System.out.println(task);
-                taskService.complete(task.getId());
+//                taskService.complete(task.getId());
             }
         }
 

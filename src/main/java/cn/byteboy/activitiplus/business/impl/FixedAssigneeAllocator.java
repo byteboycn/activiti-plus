@@ -1,4 +1,6 @@
-package cn.byteboy.activitiplus.business;
+package cn.byteboy.activitiplus.business.impl;
+
+import cn.byteboy.activitiplus.business.AssigneeAllocator;
 
 import java.util.ArrayList;
 import java.util.List;
